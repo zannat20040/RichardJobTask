@@ -3,13 +3,14 @@ import logo from '../assets/images/logo.svg'
 import menu from '../assets/images/menu.svg'
 import navlogo from '../assets/images/nav-logo.svg'
 import user from "../assets/images/user.svg"
+import useFetchData from "../hooks/useFetchData";
 
 
 
 const Header = () => {
 
   const [isActive, setIsActive] = useState(false);
-
+  const {userData} = useFetchData()
 
 useEffect(()=>{
   const header = document.querySelector("[data-header]");
@@ -130,13 +131,13 @@ const closeNav = () => {
           <p className="navbar-title">My Address</p>
 
           <address className="navbar-text">
-            3287 Indiana Avenue, Waialua, Hawaii
+           {userData?.about?.address}
           </address>
 
           <p className="navbar-text">
             Urgent issue? call us at
             <a href="tel:8085613846" className="contact-link">
-              808-561-3846
+            {userData?.about?.phoneNumber}
             </a>
           </p>
         </nav>

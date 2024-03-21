@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import banner from "../assets/images/hero-banner.png"
 import shape from "../assets/images/hero-shape.svg"
+import useFetchData from '../hooks/useFetchData';
 
 
 const Hero = () => {
 
-  
+  const {userData} = useFetchData()
+
 /**
  * TEXT ANIMATION EFFECT FOR HERO SECTION
  */
@@ -101,16 +103,16 @@ window.addEventListener("load", setLetterEffect);
 
           <div className="hero-content">
 
-            <h1 className="h1 hero-title">Richard Ryan</h1>
+            <h1 className="h1 hero-title">{userData?.about?.name}</h1>
 
             <div className="wrapper h2">
-              <strong className="strong" data-letter-effect>Photographer</strong>
-              <strong className="strong" data-letter-effect>Shutterbug</strong>
-              <strong className="strong" data-letter-effect>Cameraman</strong>
-              <strong className="strong" data-letter-effect>Pacific Portraits</strong>
+              <strong className="strong" data-letter-effect>Software Developer</strong>
+              <strong className="strong" data-letter-effect>Web Applications</strong>
+              <strong className="strong" data-letter-effect>3D Visuals</strong>
+              <strong className="strong" data-letter-effect>User Interfaces</strong>
             </div>
 
-            <p className="hero-text">15+ Years Of Experience</p>
+            <p className="hero-text">{userData?.about?.exp_year}+ Years Of Experience</p>
 
           </div>
 

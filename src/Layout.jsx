@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import Header from "./Component/Header";
 import Hero from "./Component/Hero";
 import Gallery from "./Component/Gallery";
-import Catagory from "./Component/Catagory";
 import Service from "./Component/Service";
 import Portfolio from "./Component/Portfolio";
 import Footer from "./Component/Footer";
-import { Link } from "react-router-dom";
 import logo from "./assets/images/loading.svg";
 import loading from "./assets/images/loading-circle.svg";
 import About from "./Component/About";
+import Skills from "./Component/Skills";
 
 const Layout = () => {
   useEffect(() => {
@@ -123,7 +122,7 @@ const Layout = () => {
       <Header />
       <Hero />
       <Gallery />
-      <Catagory />
+      <Skills />
       <About />
       <Service />
       <Portfolio />
