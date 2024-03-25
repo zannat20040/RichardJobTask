@@ -1,26 +1,125 @@
-
 /* 
 @tailwind base;
 @tailwind components;
 @tailwind utilities; */
 
-.project-section{
+.project-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap:15px;
+    gap: 15px;
     justify-content: space-between;
     align-items: center;
 }
 
-.project-section .portfolio-card:nth-child(odd){
+.project-section .portfolio-card:nth-child(odd) {
     position: relative;
-    top:-100px;
+    top: -100px;
 }
- @media screen and (max-width:736px) {
-    .project-section{
-        grid-template-columns: 1fr ;
+
+@media screen and (max-width:736px) {
+    .project-section {
+        grid-template-columns: 1fr;
     }
-    .project-section .portfolio-card:nth-child(odd){
+
+    .project-section .portfolio-card:nth-child(odd) {
         position: static;
     }
- }
+}
+
+
+.logo-name {
+    font-size: var(--fs-5);
+    font-family: var(--ff-recoleta)
+}
+
+.close-btn {
+    padding: 2px 20px;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    font-family: var(--ff-recoleta)
+}
+
+.modal-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    justify-content: space-between;
+
+}
+
+@media screen and (max-width:736px) {
+    .modal-div {
+        grid-template-columns: 1fr ;    
+    }
+}
+.portfolio_filter ul {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.portfolio_filter ul li {
+    background-color: white;
+    padding: 0px 20px;
+    color: black;
+    font-family: var(--ff-recoleta)
+}
+
+
+.custom-slider{
+    width: 70%;
+    margin: auto;
+}
+ .icon {
+    margin-bottom: 35px;
+  }
+ .icon .svg {
+    width: 65px;
+    height: 65px;
+    color: #f75023;
+  }
+.text {
+    margin-bottom: 51px;
+  }
+ .text p {
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.6;
+    font-family: var(--ff-recoleta)
+
+  }
+ .short {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+ .short .image .main {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+  }
+   .detail {
+    text-align: left;
+    padding-left: 25px;
+  }
+   .detail h3 {
+    font-size: 18px;
+    margin: ;
+    font-family: var(--ff-recoleta)
+
+  }
+   .detail span {
+    font-size: 14px;
+    font-family: var(--ff-recoleta)
+
+  }
+  
+  .swiper-button-prev{
+    color: white!important;
+  }
+  .swiper-button-next{
+    color: white!important;
+  }

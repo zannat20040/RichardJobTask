@@ -20,8 +20,15 @@ const Footer = () => {
             Contact Us
           </p>
 
-          <h2 className="h2 section-title" data-reveal>
-            Work inquiry, Job oportunities? Send Message.
+          <i className="h2 section-title" data-reveal style={{ margin: "0px" }}>
+            {userData?.about?.quote}
+          </i>
+          <h2
+            className="h2 section-title"
+            data-reveal
+            style={{ marginTop: "-30px" }}
+          >
+            Send Message
           </h2>
 
           <a href="#" className="btn-icon" data-reveal>
@@ -87,23 +94,13 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <div className="container">
-          <a href="#" className="logo">
-            <img
-              src={logo}
-              width="40"
-              height="40"
-              loading="lazy"
-              alt="Richard home"
-            />
-          </a>
+          <span className="logo-name">{userData?.about?.name}</span>
 
-          <ul className="social-list">
+          <ul className="social-list" >
             {userData &&
               userData?.social_handles?.map((data) => (
                 <li>
-                  <a href={data?.url} className="social-link">
-                    {data?.platform}
-                  </a>
+                  <img src={data?.image?.url} alt="" style={{width:'40px', height:'40px'}}/>
                 </li>
               ))}
           </ul>

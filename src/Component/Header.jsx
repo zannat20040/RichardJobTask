@@ -38,14 +38,7 @@ const closeNav = () => {
   return (
     <header className={`header ${isActive ? 'active' : ''}`} data-header>
       <div className="container ">
-        <a href="#" className="logo">
-          <img
-            src={logo}
-            width="40"
-            height="40"
-            alt="Richard home"
-          />
-        </a>
+      <span className="logo-name">{userData?.about?.name}</span>
 
         <button className="nav-open-btn" aria-label="open menu"  onClick={toggleNav}>
           <img
@@ -58,16 +51,8 @@ const closeNav = () => {
 
         <nav className={`navbar ${isActive ? 'active' : ''}`} data-navbar>
           <div className="navbar-top">
-            <a href="#" className="logo">
-              <img
-                src={navlogo}
-                width="140"
-                height="40"
-                alt="Richard home"
-                className="img"
-              />
-            </a>
-
+            <span className="logo-name">{userData?.about?.name}</span>
+          
             <button
             onClick={closeNav}
               className="nav-close-btn"

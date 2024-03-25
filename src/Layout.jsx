@@ -9,6 +9,7 @@ import logo from "./assets/images/loading.svg";
 import loading from "./assets/images/loading-circle.svg";
 import About from "./Component/About";
 import Skills from "./Component/Skills";
+import Feedback from "./Component/Feedback";
 
 const Layout = () => {
   useEffect(() => {
@@ -124,6 +125,7 @@ const Layout = () => {
       <Gallery />
       <Skills />
       <About />
+      <Feedback />
       <Service />
       <Portfolio />
       <Footer />

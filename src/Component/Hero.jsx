@@ -99,17 +99,16 @@ window.addEventListener("load", setLetterEffect);
         <section className="section hero " id="home" aria-label="home">
         <div className="container">
 
-          <img src={banner} width="322" height="322" alt="" className="hero-banner" />
+          <img src={userData?.about?.avatar?.url} width="322" height="322" alt="" className="hero-banner" />
 
           <div className="hero-content">
 
             <h1 className="h1 hero-title">{userData?.about?.name}</h1>
 
             <div className="wrapper h2">
-              <strong className="strong" data-letter-effect>Software Developer</strong>
-              <strong className="strong" data-letter-effect>Web Applications</strong>
-              <strong className="strong" data-letter-effect>3D Visuals</strong>
-              <strong className="strong" data-letter-effect>User Interfaces</strong>
+            <strong className="strong" data-letter-effect>I develop 3D Visuals</strong>
+            <strong className="strong" data-letter-effect> User Interfaces</strong>
+            <strong className="strong" data-letter-effect> Web Applications</strong>
             </div>
 
             <p className="hero-text">{userData?.about?.exp_year}+ Years Of Experience</p>
