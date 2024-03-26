@@ -8,7 +8,6 @@ const Contact = () => {
       aria-labelledby="service-lable"
     >
      
-
       <div
         className="contact_inner"
       
