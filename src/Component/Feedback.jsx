@@ -11,17 +11,16 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
 const Feedback = () => {
+  const { userData } = useFetchData();
 
-    const { userData } = useFetchData();
-
-    return (
-        <div>
-                <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          {userData &&
-            userData?.testimonials?.map((data) => (
-              <SwiperSlide>
-               <div className="custom-slider">
-               <div className="icon" key={data._id}>
+  return (
+    <div>
+      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        {userData &&
+          userData?.testimonials?.map((data) => (
+            <SwiperSlide>
+              <div className="custom-slider">
+                <div className="icon" key={data._id}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -54,12 +53,12 @@ const Feedback = () => {
                     <span>{data.position}</span>
                   </div>
                 </div>
-               </div>
-              </SwiperSlide>
-            ))}
-        </Swiper>
-        </div>
-    );
+              </div>
+            </SwiperSlide>
+          ))}
+      </Swiper>
+    </div>
+  );
 };
 
 export default Feedback;

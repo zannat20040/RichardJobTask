@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "./Component/Header";
 import Hero from "./Component/Hero";
-import Gallery from "./Component/Gallery";
+import Timeline from "./Component/Timeline";
 import Service from "./Component/Service";
 import Portfolio from "./Component/Portfolio";
 import Footer from "./Component/Footer";
@@ -10,6 +10,7 @@ import loading from "./assets/images/loading-circle.svg";
 import About from "./Component/About";
 import Skills from "./Component/Skills";
 import Feedback from "./Component/Feedback";
+import Contact from "./Component/Contact";
 
 const Layout = () => {
   useEffect(() => {
@@ -122,12 +123,13 @@ const Layout = () => {
 
       <Header />
       <Hero />
-      <Gallery />
+      <Timeline />
       <Skills />
       <About />
       <Feedback />
       <Service />
       <Portfolio />
+      <Contact />
       <Footer />
 
       <a

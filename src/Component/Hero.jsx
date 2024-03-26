@@ -1,126 +1,110 @@
-import React, { useEffect } from 'react';
-import banner from "../assets/images/hero-banner.png"
-import shape from "../assets/images/hero-shape.svg"
-import useFetchData from '../hooks/useFetchData';
-
+import React, { useEffect } from "react";
+import banner from "../assets/images/hero-banner.png";
+import shape from "../assets/images/hero-shape.svg";
+import useFetchData from "../hooks/useFetchData";
 
 const Hero = () => {
+  const { userData } = useFetchData();
 
-  const {userData} = useFetchData()
+  useEffect(() => {
+    const letterBoxes = document.querySelectorAll("[data-letter-effect]");
 
-/**
- * TEXT ANIMATION EFFECT FOR HERO SECTION
- */
-useEffect(()=>{
-  const letterBoxes = document.querySelectorAll("[data-letter-effect]");
+    let activeLetterBoxIndex = 0;
+    let lastActiveLetterBoxIndex = 0;
+    let totalLetterBoxDelay = 0;
 
-let activeLetterBoxIndex = 0;
-let lastActiveLetterBoxIndex = 0;
-let totalLetterBoxDelay = 0;
+    const setLetterEffect = function () {
+      for (let i = 0; i < letterBoxes.length; i++) {
+        let letterAnimationDelay = 0;
+        const letters = letterBoxes[i].textContent.trim();
+        letterBoxes[i].textContent = "";
 
-const setLetterEffect = function () {
+        for (let j = 0; j < letters.length; j++) {
+          const span = document.createElement("span");
+          span.style.animationDelay = `${letterAnimationDelay}s`;
 
-  // loop through all letter boxes
-  for (let i = 0; i < letterBoxes.length; i++) {
-    // set initial animation delay
-    let letterAnimationDelay = 0;
+          if (i === activeLetterBoxIndex) {
+            span.classList.add("in");
+          } else {
+            span.classList.add("out");
+          }
 
-    // get all character from the current letter box
-    const letters = letterBoxes[i].textContent.trim();
-    // remove all character from the current letter box
-    letterBoxes[i].textContent = "";
+          span.textContent = letters[j];
 
-    // loop through all letters
-    for (let j = 0; j < letters.length; j++) {
+          if (letters[j] === " ") span.classList.add("space");
 
-      // create a span
-      const span = document.createElement("span");
+          letterBoxes[i].appendChild(span);
 
-      // set animation delay on span
-      span.style.animationDelay = `${letterAnimationDelay}s`;
+          if (j >= letters.length - 1) break;
+          letterAnimationDelay += 0.03; // Adjust the delay for smoother effect
+        }
 
-      // set the "in" class on the span, if current letter box is active
-      // otherwise class is "out"
-      if (i === activeLetterBoxIndex) {
-        span.classList.add("in");
-      } else {
-        span.classList.add("out");
+        if (i === activeLetterBoxIndex) {
+          totalLetterBoxDelay = Number(letterAnimationDelay.toFixed(2));
+        }
+
+        if (i === lastActiveLetterBoxIndex) {
+          letterBoxes[i].classList.add("active");
+        } else {
+          letterBoxes[i].classList.remove("active");
+        }
       }
 
-      // pass current letter into span
-      span.textContent = letters[j];
+      setTimeout(function () {
+        lastActiveLetterBoxIndex = activeLetterBoxIndex;
 
-      // add space class on span, when current letter contain space
-      if (letters[j] === " ") span.classList.add("space");
+        activeLetterBoxIndex >= letterBoxes.length - 1
+          ? (activeLetterBoxIndex = 0)
+          : activeLetterBoxIndex++;
 
-      // pass the span on current letter box
-      letterBoxes[i].appendChild(span);
+        setLetterEffect();
+      }, totalLetterBoxDelay * 1000 + 2000); // Adjust the timeout for smoother transition
+    };
 
-      // skip letterAnimationDelay when loop is in the last index
-      if (j >= letters.length - 1) break;
-      // otherwise update
-      letterAnimationDelay += 0.05;
+    window.addEventListener("load", setLetterEffect);
+  }, []);
 
-    }
+  return (
+    <section className="section hero " id="home" aria-label="home">
+      <div className="container">
+        <img
+          style={{
+            width: "280px",
+            height: "280px",
+            borderRadius: "50%",
+            objectFit: "cover",
+            objectPosition: "center center",
+            display: "block",
+          }}
+          src={userData?.about?.avatar?.url}
+          alt=""
+          className="hero-banner"
+        />
 
-    // get total delay of active letter box
-    if (i === activeLetterBoxIndex) {
-      totalLetterBoxDelay = Number(letterAnimationDelay.toFixed(2));
-    }
+        <div className="hero-content">
+          <h1 className="h1 hero-title">{userData?.about?.name}</h1>
 
-    // add active class on last active letter box
-    if (i === lastActiveLetterBoxIndex) {
-      letterBoxes[i].classList.add("active");
-    } else {
-      letterBoxes[i].classList.remove("active");
-    }
-
-  }
-
-  setTimeout(function () {
-    lastActiveLetterBoxIndex = activeLetterBoxIndex;
-
-    // update activeLetterBoxIndex based on total letter boxes
-    activeLetterBoxIndex >= letterBoxes.length - 1 ? activeLetterBoxIndex = 0 : activeLetterBoxIndex++;
-
-    setLetterEffect();
-  }, (totalLetterBoxDelay * 1000) + 3000);
-
-}
-
-// call the letter effect function after window loaded
-window.addEventListener("load", setLetterEffect);
-
-
-},[])
-
-
-    return (
-        <section className="section hero " id="home" aria-label="home">
-        <div className="container">
-
-          <img src={userData?.about?.avatar?.url} width="322" height="322" alt="" className="hero-banner" />
-
-          <div className="hero-content">
-
-            <h1 className="h1 hero-title">{userData?.about?.name}</h1>
-
-            <div className="wrapper h2">
-            <strong className="strong" data-letter-effect>I develop 3D Visuals</strong>
-            <strong className="strong" data-letter-effect> User Interfaces</strong>
-            <strong className="strong" data-letter-effect> Web Applications</strong>
-            </div>
-
-            <p className="hero-text">{userData?.about?.exp_year}+ Years Of Experience</p>
-
+          <div className="wrapper h2" >
+            <strong className="strong" data-letter-effect>
+              I develop 3D Visuals
+            </strong>
+            <strong className="strong" data-letter-effect>
+              User Interfaces
+            </strong>
+            <strong className="strong" data-letter-effect>
+              Web Applications
+            </strong>
           </div>
 
+          <p className="hero-text">
+            {userData?.about?.exp_year}+ Years Of Experience
+          </p>
         </div>
+      </div>
 
-        <img src={shape} width="211" height="189" alt="" className="shape" />
-
-      </section>
-    );
+      <img src={shape} width="211" height="189" alt="" className="shape" />
+    </section>
+  );
 };
 
 export default Hero;

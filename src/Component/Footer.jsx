@@ -26,7 +26,7 @@ const Footer = () => {
           <h2
             className="h2 section-title"
             data-reveal
-            style={{ marginTop: "-30px" }}
+            style={{ marginTop: "-10px" }}
           >
             Send Message
           </h2>
@@ -96,11 +96,15 @@ const Footer = () => {
         <div className="container">
           <span className="logo-name">{userData?.about?.name}</span>
 
-          <ul className="social-list" >
+          <ul className="social-list">
             {userData &&
               userData?.social_handles?.map((data) => (
                 <li>
-                  <img src={data?.image?.url} alt="" style={{width:'40px', height:'40px'}}/>
+                  <img
+                    src={data?.image?.url}
+                    alt=""
+                    style={{ width: "40px", height: "40px" }}
+                  />
                 </li>
               ))}
           </ul>

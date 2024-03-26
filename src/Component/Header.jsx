@@ -1,60 +1,55 @@
 import React, { useEffect, useState } from "react";
-import logo from '../assets/images/logo.svg'
-import menu from '../assets/images/menu.svg'
-import navlogo from '../assets/images/nav-logo.svg'
-import user from "../assets/images/user.svg"
+import logo from "../assets/images/logo.svg";
+import menu from "../assets/images/menu.svg";
+import navlogo from "../assets/images/nav-logo.svg";
+import user from "../assets/images/user.svg";
 import useFetchData from "../hooks/useFetchData";
 
-
-
 const Header = () => {
-
   const [isActive, setIsActive] = useState(false);
-  const {userData} = useFetchData()
+  const { userData } = useFetchData();
 
-useEffect(()=>{
-  const header = document.querySelector("[data-header]");
+  useEffect(() => {
+    const header = document.querySelector("[data-header]");
 
-const activeElementOnScroll = function () {
-  if (window.scrollY > 50) {
-    header.classList.add("active");
-  } else {
-    header.classList.remove("active");
-  }
-}
+    const activeElementOnScroll = function () {
+      if (window.scrollY > 50) {
+        header.classList.add("active");
+      } else {
+        header.classList.remove("active");
+      }
+    };
 
-window.addEventListener("scroll", activeElementOnScroll);
-},[])
+    window.addEventListener("scroll", activeElementOnScroll);
+  }, []);
 
-const toggleNav = () => {
-  setIsActive(!isActive);
-}
+  const toggleNav = () => {
+    setIsActive(!isActive);
+  };
 
-const closeNav = () => {
-  setIsActive(false);
-}
-
+  const closeNav = () => {
+    setIsActive(false);
+  };
 
   return (
-    <header className={`header ${isActive ? 'active' : ''}`} data-header>
+    <header className={`header ${isActive ? "active" : ""}`} data-header>
       <div className="container ">
-      <span className="logo-name">{userData?.about?.name}</span>
+        <span className="logo-name">{userData?.about?.name}</span>
 
-        <button className="nav-open-btn" aria-label="open menu"  onClick={toggleNav}>
-          <img
-            src={menu}
-            width="17"
-            height="17"
-            alt="menu icon"
-          />
+        <button
+          className="nav-open-btn"
+          aria-label="open menu"
+          onClick={toggleNav}
+        >
+          <img src={menu} width="17" height="17" alt="menu icon" />
         </button>
 
-        <nav className={`navbar ${isActive ? 'active' : ''}`} data-navbar>
+        <nav className={`navbar ${isActive ? "active" : ""}`} data-navbar>
           <div className="navbar-top">
             <span className="logo-name">{userData?.about?.name}</span>
-          
+
             <button
-            onClick={closeNav}
+              onClick={closeNav}
               className="nav-close-btn"
               aria-label="close menu"
               data-nav-toggler
@@ -103,26 +98,19 @@ const closeNav = () => {
           </ul>
 
           <button className="login-btn">
-            <img
-              src={user}
-              width="21"
-              height="21"
-              alt="user icon"
-            />
+            <img src={user} width="21" height="21" alt="user icon" />
 
             <span className="span">Login</span>
           </button>
 
           <p className="navbar-title">My Address</p>
 
-          <address className="navbar-text">
-           {userData?.about?.address}
-          </address>
+          <address className="navbar-text">{userData?.about?.address}</address>
 
           <p className="navbar-text">
             Urgent issue? call us at
             <a href="tel:8085613846" className="contact-link">
-            {userData?.about?.phoneNumber}
+              {userData?.about?.phoneNumber}
             </a>
           </p>
         </nav>

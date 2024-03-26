@@ -22,13 +22,11 @@ const About = () => {
 
               <div className="wrapper has-before" data-reveal="right">
                 <p className="section-text">
-                  A passionate
-                  <em className="em"> {userData?.about?.title}</em>
-                  who are working in this field for
-                  <em className="em">last {userData?.about?.exp_year} years.</em>
-                  I’m ready to give you my best.
+                {userData?.about?.description}
                 </p>
 
+<p className="signature">{userData?.about?.name}</p>
+              
               </div>
             </div>
 

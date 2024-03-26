@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import shape from "../assets/images/portfolio-shape.svg";
 import useFetchData from "../hooks/useFetchData";
-import Modal from "./Modal";
-
+import { IoMdClose } from "react-icons/io";
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const { userData } = useFetchData();
   const [filterKey, setFilterKey] = useState("*");
+  const modalRef = useRef(null);
 
   const getTechStacks = [];
 
@@ -38,14 +38,15 @@ const Portfolio = () => {
     right: 0,
     bottom: 0,
     left: 0,
-    overflowY: "scroll",
     backgroundColor: "rgba(0, 0, 0, 0.2)",
     backdropFilter: "blur(4px)",
     transitionDuration: "100ms",
+    overflowY: "scroll",
   };
 
   const modalContentStyle = {
     maxWidth: "70%",
+    maxHeight: "600px",
     borderRadius: "8px",
     backgroundColor: "#fff",
     padding: "1.5rem",
@@ -53,6 +54,8 @@ const Portfolio = () => {
     color: "#000",
     opacity: openModal ? 1 : 0,
     transitionDuration: openModal ? "300ms" : "150ms",
+    overflowY: "scroll",
+    position: "relative",
   };
 
   const HandleModel = (project) => {
@@ -60,9 +63,26 @@ const Portfolio = () => {
     setSelectedProject(project);
   };
 
-  const filteredProjects = filterKey === "*" ? userData?.projects : userData?.projects?.filter(project => project?.techStack?.find(stack=>stack?.trim()==filterKey));
+  const filteredProjects =
+    filterKey === "*"
+      ? userData?.projects
+      : userData?.projects?.filter((project) =>
+          project?.techStack?.find((stack) => stack?.trim() == filterKey)
+        );
 
-  console.log(filteredProjects)
+  useEffect(() => {
+    const handleCloseModal = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        setOpenModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleCloseModal);
+
+    return () => {
+      document.removeEventListener("mousedown", handleCloseModal);
+    };
+  }, []);
   return (
     <div
       className="section portfolio"
@@ -148,7 +168,7 @@ const Portfolio = () => {
             ...modalOverlayStyle,
           }}
         >
-          <div style={modalContentStyle}>
+          <div ref={modalRef} style={modalContentStyle}>
             <figure className="card-banner img-holder has-before">
               <img
                 src={selectedProject?.image?.url}
@@ -190,10 +210,19 @@ const Portfolio = () => {
                 </div>
               </div>
             </div>
-            <div style={{ marginTop: "20px" }}>
+            <div
+              style={{
+                marginTop: "20px",
+                position: "absolute",
+                top: "0",
+                right: "20px",
+                zIndex: "100",
+              }}
+            >
               <button onClick={() => setOpenModal(false)} className="close-btn">
-                Close
+                <IoMdClose />
               </button>
+              <IoMdClose />
             </div>
           </div>
         </div>
