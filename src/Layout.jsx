@@ -11,6 +11,8 @@ import About from "./Component/About";
 import Skills from "./Component/Skills";
 import Feedback from "./Component/Feedback";
 import Contact from "./Component/Contact";
+import Experience from "./Component/Experience";
+import Education from "./Component/Education";
 
 const Layout = () => {
   useEffect(() => {
@@ -128,6 +130,8 @@ const Layout = () => {
       <About />
       <Feedback />
       <Service />
+      <Experience />
+      <Education />
       <Portfolio />
       <Contact />
       <Footer />
